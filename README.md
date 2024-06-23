@@ -35,15 +35,15 @@ The last \u2019 was not terminating the movie title, but was later in the headli
 Python doesn't know which \u2019 marks the end of the title. But we know that it marks the end of the title if no text comes after it, or if the next thing after it is a space followed by more text. So the next thing to do is to capture only the text before \u2019 if \u2019 is followed by a space and more text.
 
 Therefore, we use `re.compile(r"^(.*?)(?:’ .+)?$")`, which is using a non-greedy quantifier to capture:  
-- The starting text `^(.*?)`  
-- Up until any \u2019 that happens to be followed by a space and more text `(?:’ .+)`  
-- If that's how the rest of the text goes `?$`
+- the starting text `^(.*?)`  
+- up until any \u2019 that happens to be followed by a space and more text `(?:’ .+)`  
+- if that's how the rest of the text goes `?$`
 
 ### Stage 3
 It's almost perfect, but while all authors are putting the movie titles between quotes, some chose to include a comma before the end quote. Similar to stage 2, we use `re.compile(r"^(.*?),?$")` to capture:  
-- The starting text `^(.*?)`  
-- Up until any comma `,`  
-- If that's how the rest of the text goes `?$`
+- the starting text `^(.*?)`  
+- up until any comma `,`  
+- if that's how the rest of the text goes `?$`
 
 ### Rate limits
 The homework asks that we include an unspecified cooldown after every 50th request when querying TMDB. TMDB's rate limit is 40 requests every 10 seconds. That said, a cooldown every 50 requests seems arbitrarily chosen. Perhaps a better approach (but keeping it simple) would be to sleep 0.25 seconds every loop. With a 1/4-second delay, plus the processing time in the loop, it would be impossible to exceed the rate limit while keeping things moving at a reasonable speed.  
