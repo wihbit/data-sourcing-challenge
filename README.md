@@ -44,7 +44,3 @@ It's almost perfect, but while all authors are putting the movie titles between 
 - the starting text `^(.*?)`  
 - up until any comma `,`  
 - if that's how the rest of the text goes `?$`
-
-### Rate limits
-The homework asks that we include an unspecified cooldown after every 50th request when querying TMDB. TMDB's rate limit is 40 requests every 10 seconds. That said, a cooldown every 50 requests seems arbitrarily chosen. Perhaps a better approach (but keeping it simple) would be to sleep 0.25 seconds every loop. With a 1/4-second delay, plus the processing time in the loop, it would be impossible to exceed the rate limit while keeping things moving at a reasonable speed.  
-In my case, with the for loop processes included, my machine can't make requests faster than the rate limit anyway, so no sleeps are needed in the first place.
